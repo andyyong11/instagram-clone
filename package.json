@@ -1,0 +1,13 @@
+{
+  "name": "instagram-clone",
+  "version": "1.0.0",
+  "description": "Instagram Clone with React and Rails",
+  "scripts": {
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:backend": "cd backend && rails server -p 3000",
+    "start:frontend": "cd frontend && npm start"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+} 

@@ -1,0 +1,37 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# backend
+/backend/tmp
+/backend/log
+/backend/storage
+/backend/node_modules
+/backend/tmp/cache
+
+# frontend
+/frontend/build
+/frontend/node_modules
+
+# IDE
+.idea
+.vscode 
