@@ -24,6 +24,7 @@ A full-stack Instagram clone built with React, Ruby on Rails, and PostgreSQL.
 - Ruby (3.0 or higher)
 - Node.js (v14 or higher)
 - PostgreSQL
+- PgAdmin (for database management)
 - npm or yarn
 - Foreman (`gem install foreman`) for running multiple processes
 
@@ -35,7 +36,28 @@ git clone https://github.com/andyyong11/instagram-clone.git
 cd instagram-clone
 ```
 
-### 2. Backend Setup
+### 2. Database Setup
+You have two options for database setup:
+
+#### Option 1: Restore from backup (Recommended)
+A backup of the database is included in the root directory as `Instagram_Clone_PSQL`.
+
+1. Open PgAdmin
+2. Create a new database named `instagram_clone_development`
+3. Right-click on the database and select "Restore"
+4. Select the `Instagram_Clone_PSQL` file from the project root directory
+5. Complete the restore process
+
+#### Option 2: Create and seed a new database
+```bash
+# Navigate to backend directory
+cd backend
+
+# Run database creation and migrations
+rails db:create db:migrate db:seed
+```
+
+### 3. Backend Setup
 ```bash
 # Navigate to backend directory
 cd backend
@@ -43,14 +65,14 @@ cd backend
 # Install Ruby dependencies
 bundle install
 
-# Create, migrate and seed the database
-rails db:create db:migrate db:seed
+# Skip database setup if you restored from backup in the previous step
+# Otherwise run: rails db:create db:migrate db:seed
 
 # Create config/master.key or set RAILS_MASTER_KEY env variable
 # (Contact repository owner for the master key if needed)
 ```
 
-### 3. Frontend Setup
+### 4. Frontend Setup
 ```bash
 # Navigate to frontend directory
 cd ../frontend
@@ -61,7 +83,7 @@ npm install
 yarn install
 ```
 
-### 4. Environment Variables
+### 5. Environment Variables
 Create a `.env` file in the project root:
 ```
 # For production deployment
