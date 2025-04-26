@@ -83,14 +83,6 @@ npm install
 yarn install
 ```
 
-### 5. Environment Variables
-Create a `.env` file in the project root:
-```
-# For production deployment
-PORT=3000
-REACT_APP_API_URL=http://localhost:3001/api
-```
-
 ## Running the Application
 
 ### Option 1: Using Foreman (recommended for development)
