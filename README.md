@@ -131,6 +131,3 @@ The application should now be running at:
 - **Image upload issues**: Check that Active Storage is properly configured
 - **CORS issues**: Verify CORS settings in `config/initializers/cors.rb` if API calls fail
 
-## License
-
-MIT
