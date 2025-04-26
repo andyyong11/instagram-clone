@@ -1,10 +1,18 @@
 module Api
+  # Controller for managing user-related actions in the API
+  # Includes endpoints for viewing profiles, managing follows,
+  # and retrieving user posts
   class UsersController < ApplicationController
     include Rails.application.routes.url_helpers
     
     before_action :set_user, only: [:show, :update, :follow, :unfollow, :posts]
     skip_before_action :authenticate_user!, only: [:posts]
 
+    # GET /api/users/:id
+    # Returns detailed profile information for a user including:
+    # - Basic user details (id, username, bio, etc)
+    # - Follow counts (followers and following)
+    # - Whether the current user follows this user
     def show
       Rails.logger.info "PROFILE REQUEST: Getting profile for user #{@user.id}"
       
@@ -52,6 +60,10 @@ module Api
       render json: user_json
     end
 
+    # GET /api/users/:id/posts
+    # Returns paginated posts for a specific user
+    # Optional params:
+    # - page: pagination page number, defaults to 1
     def posts
       page = params[:page] || 1
       per_page = 10
@@ -98,6 +110,9 @@ module Api
       }
     end
 
+    # PATCH/PUT /api/users/:id
+    # Updates user profile information if authorized
+    # Allowed params: username, email, bio
     def update
       Rails.logger.info "Update request received for user #{@user.id}"
       Rails.logger.info "Parameters: #{params.inspect}"
@@ -115,6 +130,9 @@ module Api
       end
     end
 
+    # POST /api/users/:id/follow
+    # Creates a follow relationship between current user and target user
+    # Uses direct SQL for better reliability
     def follow
       Rails.logger.info "FOLLOW REQUEST: User #{current_user.id} attempting to follow user #{@user.id}"
       
@@ -165,6 +183,9 @@ module Api
       end
     end
 
+    # DELETE /api/users/:id/unfollow
+    # Removes a follow relationship between current user and target user
+    # Uses direct SQL for better reliability
     def unfollow
       Rails.logger.info "UNFOLLOW REQUEST: User #{current_user.id} attempting to unfollow user #{@user.id}"
       
@@ -217,10 +238,12 @@ module Api
 
     private
 
+    # Sets @user instance variable for actions that need it
     def set_user
       @user = User.find(params[:id])
     end
 
+    # Defines allowed parameters for user updates
     def user_params
       params.permit(:username, :email, :bio)
     end
