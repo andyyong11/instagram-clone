@@ -106,13 +106,6 @@ The application should now be running at:
 - Frontend: http://localhost:3000
 - Backend API: http://localhost:3001
 
-## Deployment
-
-This project can be deployed to any platform that supports Rails and React applications:
-
-- **Backend**: Deploy as a standard Rails API application
-- **Frontend**: Build (`npm run build`) and deploy the static files to a web server or CDN
-
 ## API Endpoints
 
 ### Authentication
