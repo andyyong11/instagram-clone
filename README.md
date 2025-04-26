@@ -11,46 +11,93 @@ A full-stack Instagram clone built with React, Ruby on Rails, and PostgreSQL.
 - User profiles
 - Image upload
 
+## Tech Stack
+
+- **Frontend**: React, TypeScript, Material-UI
+- **Backend**: Ruby on Rails
+- **Database**: PostgreSQL
+- **Storage**: Active Storage with local storage (configurable for cloud storage)
+- **Authentication**: JWT (JSON Web Tokens)
+
 ## Prerequisites
 
 - Ruby (3.0 or higher)
 - Node.js (v14 or higher)
 - PostgreSQL
 - npm or yarn
+- Foreman (`gem install foreman`) for running multiple processes
 
-## Setup
+## Installation & Setup
 
-1. Clone the repository
-2. Install backend dependencies:
-   ```bash
-   cd backend
-   bundle install
-   ```
-3. Set up the database:
-   ```bash
-   rails db:create db:migrate db:seed
-   ```
-4. Install frontend dependencies:
-   ```bash
-   cd ../frontend
-   npm install
-   ```
-5. Start the servers:
-   
-   **Option 1: Start both servers at once using Foreman**
-   ```bash
-   # From project root
-   foreman start
-   ```
-   
-   **Option 2: Start servers separately**
-   ```bash
-   # In one terminal window (from project root)
-   cd backend && rails server -p 3000
-   
-   # In another terminal window (from project root)
-   cd frontend && npm start
-   ```
+### 1. Clone the repository
+```bash
+git clone https://github.com/andyyong11/instagram-clone.git
+cd instagram-clone
+```
+
+### 2. Backend Setup
+```bash
+# Navigate to backend directory
+cd backend
+
+# Install Ruby dependencies
+bundle install
+
+# Create, migrate and seed the database
+rails db:create db:migrate db:seed
+
+# Create config/master.key or set RAILS_MASTER_KEY env variable
+# (Contact repository owner for the master key if needed)
+```
+
+### 3. Frontend Setup
+```bash
+# Navigate to frontend directory
+cd ../frontend
+
+# Install JavaScript dependencies
+npm install
+# or if you use yarn
+yarn install
+```
+
+### 4. Environment Variables
+Create a `.env` file in the project root:
+```
+# For production deployment
+PORT=3000
+REACT_APP_API_URL=http://localhost:3001/api
+```
+
+## Running the Application
+
+### Option 1: Using Foreman (recommended for development)
+```bash
+# From project root
+foreman start
+```
+
+### Option 2: Running servers separately
+```bash
+# In one terminal (backend)
+cd backend
+rails server -p 3001
+
+# In another terminal (frontend)
+cd frontend
+npm start
+```
+
+The application should now be running at:
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:3001
+
+## Deployment
+
+This project can be deployed to any platform that supports Rails and React applications:
+
+- **Backend**: Deploy as a standard Rails API application
+- **Frontend**: Build (`npm run build`) and deploy the static files to a web server or CDN
 
 ## API Endpoints
 
@@ -70,6 +117,12 @@ A full-stack Instagram clone built with React, Ruby on Rails, and PostgreSQL.
 - GET /api/users/:id - Get user by ID
 - PUT /api/users/follow/:id - Follow a user
 - PUT /api/users/unfollow/:id - Unfollow a user
+
+## Troubleshooting
+
+- **Database connection issues**: Ensure PostgreSQL is running and credentials in `config/database.yml` are correct
+- **Image upload issues**: Check that Active Storage is properly configured
+- **CORS issues**: Verify CORS settings in `config/initializers/cors.rb` if API calls fail
 
 ## License
 
