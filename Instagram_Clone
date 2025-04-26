@@ -1,0 +1,997 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 17.4
+-- Dumped by pg_dump version 17.4
+
+-- Started on 2025-04-25 23:09:39
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 232 (class 1259 OID 90696)
+-- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.active_storage_attachments (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    record_type character varying NOT NULL,
+    record_id bigint NOT NULL,
+    blob_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.active_storage_attachments OWNER TO postgres;
+
+--
+-- TOC entry 231 (class 1259 OID 90695)
+-- Name: active_storage_attachments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.active_storage_attachments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.active_storage_attachments_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 5011 (class 0 OID 0)
+-- Dependencies: 231
+-- Name: active_storage_attachments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.active_storage_attachments_id_seq OWNED BY public.active_storage_attachments.id;
+
+
+--
+-- TOC entry 230 (class 1259 OID 90686)
+-- Name: active_storage_blobs; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.active_storage_blobs (
+    id bigint NOT NULL,
+    key character varying NOT NULL,
+    filename character varying NOT NULL,
+    content_type character varying,
+    metadata text,
+    service_name character varying NOT NULL,
+    byte_size bigint NOT NULL,
+    checksum character varying,
+    created_at timestamp(6) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.active_storage_blobs OWNER TO postgres;
+
+--
+-- TOC entry 229 (class 1259 OID 90685)
+-- Name: active_storage_blobs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.active_storage_blobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.active_storage_blobs_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 5012 (class 0 OID 0)
+-- Dependencies: 229
+-- Name: active_storage_blobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.active_storage_blobs_id_seq OWNED BY public.active_storage_blobs.id;
+
+
+--
+-- TOC entry 234 (class 1259 OID 90712)
+-- Name: active_storage_variant_records; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.active_storage_variant_records (
+    id bigint NOT NULL,
+    blob_id bigint NOT NULL,
+    variation_digest character varying NOT NULL
+);
+
+
+ALTER TABLE public.active_storage_variant_records OWNER TO postgres;
+
+--
+-- TOC entry 233 (class 1259 OID 90711)
+-- Name: active_storage_variant_records_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.active_storage_variant_records_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.active_storage_variant_records_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 5013 (class 0 OID 0)
+-- Dependencies: 233
+-- Name: active_storage_variant_records_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.active_storage_variant_records_id_seq OWNED BY public.active_storage_variant_records.id;
+
+
+--
+-- TOC entry 218 (class 1259 OID 90476)
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.ar_internal_metadata OWNER TO postgres;
+
+--
+-- TOC entry 220 (class 1259 OID 90485)
+-- Name: comments; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.comments (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    post_id bigint NOT NULL,
+    content text NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.comments OWNER TO postgres;
+
+--
+-- TOC entry 219 (class 1259 OID 90484)
+-- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.comments_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 5014 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.comments_id_seq OWNED BY public.comments.id;
+
+
+--
+-- TOC entry 222 (class 1259 OID 90496)
+-- Name: follows; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.follows (
+    id bigint NOT NULL,
+    follower_id bigint NOT NULL,
+    followed_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.follows OWNER TO postgres;
+
+--
+-- TOC entry 221 (class 1259 OID 90495)
+-- Name: follows_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.follows_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.follows_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 5015 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: follows_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.follows_id_seq OWNED BY public.follows.id;
+
+
+--
+-- TOC entry 224 (class 1259 OID 90506)
+-- Name: likes; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.likes (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    post_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.likes OWNER TO postgres;
+
+--
+-- TOC entry 223 (class 1259 OID 90505)
+-- Name: likes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.likes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.likes_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 5016 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: likes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.likes_id_seq OWNED BY public.likes.id;
+
+
+--
+-- TOC entry 226 (class 1259 OID 90516)
+-- Name: posts; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.posts (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    caption text,
+    image character varying,
+    likes_count integer DEFAULT 0,
+    comments_count integer DEFAULT 0,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.posts OWNER TO postgres;
+
+--
+-- TOC entry 225 (class 1259 OID 90515)
+-- Name: posts_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.posts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.posts_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 5017 (class 0 OID 0)
+-- Dependencies: 225
+-- Name: posts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.posts_id_seq OWNED BY public.posts.id;
+
+
+--
+-- TOC entry 217 (class 1259 OID 90469)
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.schema_migrations (
+    version character varying NOT NULL
+);
+
+
+ALTER TABLE public.schema_migrations OWNER TO postgres;
+
+--
+-- TOC entry 228 (class 1259 OID 90528)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    id bigint NOT NULL,
+    email character varying DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    username character varying NOT NULL,
+    bio text,
+    profile_picture character varying,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp(6) without time zone,
+    remember_created_at timestamp(6) without time zone,
+    jti character varying NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- TOC entry 227 (class 1259 OID 90527)
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.users_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 5018 (class 0 OID 0)
+-- Dependencies: 227
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- TOC entry 4795 (class 2604 OID 90699)
+-- Name: active_storage_attachments id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.active_storage_attachments ALTER COLUMN id SET DEFAULT nextval('public.active_storage_attachments_id_seq'::regclass);
+
+
+--
+-- TOC entry 4794 (class 2604 OID 90689)
+-- Name: active_storage_blobs id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.active_storage_blobs ALTER COLUMN id SET DEFAULT nextval('public.active_storage_blobs_id_seq'::regclass);
+
+
+--
+-- TOC entry 4796 (class 2604 OID 90715)
+-- Name: active_storage_variant_records id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.active_storage_variant_records ALTER COLUMN id SET DEFAULT nextval('public.active_storage_variant_records_id_seq'::regclass);
+
+
+--
+-- TOC entry 4785 (class 2604 OID 90488)
+-- Name: comments id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.comments ALTER COLUMN id SET DEFAULT nextval('public.comments_id_seq'::regclass);
+
+
+--
+-- TOC entry 4786 (class 2604 OID 90499)
+-- Name: follows id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follows ALTER COLUMN id SET DEFAULT nextval('public.follows_id_seq'::regclass);
+
+
+--
+-- TOC entry 4787 (class 2604 OID 90509)
+-- Name: likes id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.likes ALTER COLUMN id SET DEFAULT nextval('public.likes_id_seq'::regclass);
+
+
+--
+-- TOC entry 4788 (class 2604 OID 90519)
+-- Name: posts id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.posts ALTER COLUMN id SET DEFAULT nextval('public.posts_id_seq'::regclass);
+
+
+--
+-- TOC entry 4791 (class 2604 OID 90531)
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- TOC entry 5003 (class 0 OID 90696)
+-- Dependencies: 232
+-- Data for Name: active_storage_attachments; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.active_storage_attachments (id, name, record_type, record_id, blob_id, created_at) FROM stdin;
+1	image_attachment	Post	19	1	2025-04-21 08:09:01.713612
+3	image_attachment	Post	105	3	2025-04-22 06:00:23.58524
+65	avatar	User	11	65	2025-04-22 19:10:58.58323
+70	image_attachment	Post	112	70	2025-04-24 08:02:38.475734
+75	image_attachment	Post	117	75	2025-04-26 03:47:18.758501
+\.
+
+
+--
+-- TOC entry 5001 (class 0 OID 90686)
+-- Dependencies: 230
+-- Data for Name: active_storage_blobs; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.active_storage_blobs (id, key, filename, content_type, metadata, service_name, byte_size, checksum, created_at) FROM stdin;
+1	hav0xqitmyux92o8btx7h711zgzq	Screenshot 2024-01-14 225046.png	image/png	{"identified":true,"analyzed":true}	local	120203	reL/Wmfg3sIWj1wbepvFwQ==	2025-04-21 08:09:01.708198
+3	rqdpmvidzprg2mc9nw16ef92biq6	Screenshot (1).png	image/png	{"identified":true,"analyzed":true}	local	237389	cEZMymHgKxLyCx5Za+xAlQ==	2025-04-22 06:00:23.581969
+65	mde92gep68mltv9x2x0b59w8dm0d	profile-picture-1745349057672.jpg	image/jpeg	{"identified":true,"analyzed":true}	local	4958	bFaHba3R3xu6LCUxG64TbQ==	2025-04-22 19:10:58.572494
+75	dlax0tsmzfp585n8klkadavx3sc8	Screenshot 2024-04-03 143149.png	image/png	{"identified":true,"analyzed":true}	local	42329	45w3KkoAhvPPHp/mD7wvkg==	2025-04-26 03:47:18.756073
+70	g0ldjhfh38b1g8lnem9955dqrzb5	Screenshot 2024-09-07 160822.png	image/png	{"identified":true,"analyzed":true}	local	107848	nMUCELaDDNHUlU8oxF9pHQ==	2025-04-24 08:02:38.472295
+\.
+
+
+--
+-- TOC entry 5005 (class 0 OID 90712)
+-- Dependencies: 234
+-- Data for Name: active_storage_variant_records; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.active_storage_variant_records (id, blob_id, variation_digest) FROM stdin;
+\.
+
+
+--
+-- TOC entry 4989 (class 0 OID 90476)
+-- Dependencies: 218
+-- Data for Name: ar_internal_metadata; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.ar_internal_metadata (key, value, created_at, updated_at) FROM stdin;
+environment	development	2025-04-21 05:56:13.156368	2025-04-21 05:56:13.156371
+schema_sha1	6f40af31638a6398a00b2b86bc2b0a009da7d3d4	2025-04-21 05:56:13.161343	2025-04-21 05:56:13.161345
+\.
+
+
+--
+-- TOC entry 4991 (class 0 OID 90485)
+-- Dependencies: 220
+-- Data for Name: comments; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.comments (id, user_id, post_id, content, created_at, updated_at) FROM stdin;
+118	11	105	m	2025-04-24 21:49:42.305582	2025-04-24 21:49:42.305582
+120	11	112	food	2025-04-25 22:24:17.921258	2025-04-25 22:24:17.921258
+125	16	105	asdf	2025-04-26 03:44:30.064992	2025-04-26 03:44:30.064992
+114	11	19	yo	2025-04-24 06:42:43.438841	2025-04-24 06:42:43.438841
+108	11	105	no way	2025-04-22 06:01:34.260116	2025-04-22 06:01:34.260116
+109	14	105	yup	2025-04-22 06:01:50.13467	2025-04-22 06:01:50.13467
+111	11	105	k	2025-04-22 18:40:25.382571	2025-04-22 18:40:25.382571
+\.
+
+
+--
+-- TOC entry 4993 (class 0 OID 90496)
+-- Dependencies: 222
+-- Data for Name: follows; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.follows (id, follower_id, followed_id, created_at, updated_at) FROM stdin;
+1	6	7	2025-04-21 06:59:10.089017	2025-04-21 06:59:10.089017
+2	6	8	2025-04-21 06:59:10.106113	2025-04-21 06:59:10.106113
+3	6	9	2025-04-21 06:59:10.119585	2025-04-21 06:59:10.119585
+4	7	6	2025-04-21 06:59:10.132804	2025-04-21 06:59:10.132804
+5	7	8	2025-04-21 06:59:10.145129	2025-04-21 06:59:10.145129
+6	8	6	2025-04-21 06:59:10.156729	2025-04-21 06:59:10.156729
+7	8	7	2025-04-21 06:59:10.165591	2025-04-21 06:59:10.165591
+8	8	9	2025-04-21 06:59:10.202068	2025-04-21 06:59:10.202068
+9	8	10	2025-04-21 06:59:10.214441	2025-04-21 06:59:10.214441
+10	9	7	2025-04-21 06:59:10.226515	2025-04-21 06:59:10.226515
+11	9	10	2025-04-21 06:59:10.235102	2025-04-21 06:59:10.235102
+12	10	6	2025-04-21 06:59:10.244523	2025-04-21 06:59:10.244523
+13	10	9	2025-04-21 06:59:10.254089	2025-04-21 06:59:10.254089
+89	11	9	2025-04-23 22:20:53.046822	2025-04-23 22:20:53.046822
+98	15	11	2025-04-26 03:16:22.761239	2025-04-26 03:16:22.761239
+99	11	14	2025-04-26 03:41:58.964307	2025-04-26 03:41:58.964307
+101	16	11	2025-04-26 03:43:52.248257	2025-04-26 03:43:52.248257
+102	11	16	2025-04-26 03:46:20.081589	2025-04-26 03:46:20.081589
+56	11	8	2025-04-22 05:50:47.739839	2025-04-22 05:50:47.739839
+\.
+
+
+--
+-- TOC entry 4995 (class 0 OID 90506)
+-- Dependencies: 224
+-- Data for Name: likes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.likes (id, user_id, post_id, created_at, updated_at) FROM stdin;
+118	11	105	2025-04-23 22:35:02.117681	2025-04-23 22:35:02.117681
+131	11	19	2025-04-25 22:34:25.118732	2025-04-25 22:34:25.118732
+134	11	112	2025-04-26 03:41:30.987345	2025-04-26 03:41:30.987345
+135	16	19	2025-04-26 03:44:13.754415	2025-04-26 03:44:13.754415
+106	14	105	2025-04-22 06:00:35.133565	2025-04-22 06:00:35.133565
+\.
+
+
+--
+-- TOC entry 4997 (class 0 OID 90516)
+-- Dependencies: 226
+-- Data for Name: posts; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.posts (id, user_id, caption, image, likes_count, comments_count, created_at, updated_at) FROM stdin;
+19	11	hello\r\n	#<ActionDispatch::Http::UploadedFile:0x000002a727522120>	0	0	2025-04-21 08:09:01.642595	2025-04-21 08:09:02.582632
+112	14	fffffff	#<ActionDispatch::Http::UploadedFile:0x000001ac409cac50>	0	0	2025-04-24 08:02:38.457929	2025-04-24 08:02:38.717707
+117	16	fadsfad	#<ActionDispatch::Http::UploadedFile:0x00000271755dbef0>	0	0	2025-04-26 03:47:18.746912	2025-04-26 03:47:18.864214
+105	14	Yo come foolow me and look at my new post\r\n	#<ActionDispatch::Http::UploadedFile:0x00000258e4f574b0>	0	0	2025-04-22 06:00:23.557438	2025-04-22 06:00:26.826008
+\.
+
+
+--
+-- TOC entry 4988 (class 0 OID 90469)
+-- Dependencies: 217
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.schema_migrations (version) FROM stdin;
+20250421001000
+20250421001100
+20250421001200
+20250421001300
+20250421001400
+20250421080739
+\.
+
+
+--
+-- TOC entry 4999 (class 0 OID 90528)
+-- Dependencies: 228
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (id, email, encrypted_password, username, bio, profile_picture, reset_password_token, reset_password_sent_at, remember_created_at, jti, created_at, updated_at) FROM stdin;
+6	john@example.com	$2a$12$.lTqBMcOQ8/qT9w9vBU7ZupkRnRUKZeeiet920Z7qCv53AurnwHpS	john_doe	Photographer and travel enthusiast	\N	\N	\N	\N	dcfe238c-a49b-427c-a591-df1e6bd8902f	2025-04-21 06:59:09.258552	2025-04-21 06:59:09.258552
+7	jane@example.com	$2a$12$RuRnq2V0HOMwLv2Yq9HMp.IEYdxhsLDWzGfg5iwU6d.ponM0JQFhW	jane_smith	Food blogger | Coffee addict	\N	\N	\N	\N	12de9d3d-b420-4ed8-9fd5-e70c0c6808f7	2025-04-21 06:59:09.450873	2025-04-21 06:59:09.450873
+8	alex@example.com	$2a$12$5XhqGsdwz6L3qvmsZHjk3.qvKUakNMKwSEsUzkl9/JNRcwxLhtUM6	alex_photography	Capturing moments | Professional photographer	\N	\N	\N	\N	b35ef267-c86f-4847-a4da-e35fcdabf0e5	2025-04-21 06:59:09.639187	2025-04-21 06:59:09.639187
+9	sarah@example.com	$2a$12$017gZ7ihf7.hr9PD0jYXtebM/zxHEwuueIC4WNaNN4MNgNvO6ctTC	sarah_travels	✈️ Exploring the world one country at a time	\N	\N	\N	\N	57efd95b-f685-4a43-9017-df941c256726	2025-04-21 06:59:09.830051	2025-04-21 06:59:09.830051
+10	mike@example.com	$2a$12$IKWyNHO/0kyy7YRQcxwjse.FdVRdc/W4kTUIO16Qt9KgSsYA37gP6	mike_fitness	Personal trainer | Fitness tips and motivation	\N	\N	\N	\N	e9a30881-8d78-4f64-a3bc-61b692ba0862	2025-04-21 06:59:10.020342	2025-04-21 06:59:10.020342
+14	asdf@gmail.com	$2a$12$qbrvhfI.SgSIPzR8Q2vV1.DZCCj8BkUOzMx79yC62dY.HKifCQ3tW	asdf	asdf\n	\N	\N	\N	\N	97eba405-541d-45bf-bdcd-d81e01f294b3	2025-04-22 05:59:50.200589	2025-04-22 05:59:50.200589
+11	yongandy07@gmail.com	$2a$12$JRYdC.g2t1mFmGSW0mVKpe5R7UR9mlhn0r0R2h/gyNjJJ6VN0b.i2	andyyong	hello	http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NjQsInB1ciI6ImJsb2JfaWQifX0=--42b414a5172c70187631b5986451406b44c064d5/profile-picture-1745349057672.jpg	\N	\N	\N	63f3f280-4f71-407c-ac05-23b270a664a5	2025-04-21 07:15:36.229328	2025-04-22 19:15:19.745373
+15	aa@gmail.com	$2a$12$uVL7YE6FC1caOfR1pR7SWOwpvzNAxsCZBFLHzt6TaCJ2j/Vkh8ykm	aaaa	hello this is my bio	\N	\N	\N	\N	e8cda468-e9e3-4bd9-a13f-db463e47f350	2025-04-26 02:40:52.407076	2025-04-26 02:40:52.407076
+16	moon@gmail.com	$2a$12$QooOYs9RsUEkglam9DhxLeRK87GuZSjOXbObP/OnpakobAIvWfDj6	moonsads	hello this is my first bio	\N	\N	\N	\N	ed266322-662d-4459-8529-18921f0b4de9	2025-04-26 03:43:06.920256	2025-04-26 03:47:07.164381
+\.
+
+
+--
+-- TOC entry 5019 (class 0 OID 0)
+-- Dependencies: 231
+-- Name: active_storage_attachments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.active_storage_attachments_id_seq', 75, true);
+
+
+--
+-- TOC entry 5020 (class 0 OID 0)
+-- Dependencies: 229
+-- Name: active_storage_blobs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.active_storage_blobs_id_seq', 75, true);
+
+
+--
+-- TOC entry 5021 (class 0 OID 0)
+-- Dependencies: 233
+-- Name: active_storage_variant_records_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.active_storage_variant_records_id_seq', 1, false);
+
+
+--
+-- TOC entry 5022 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.comments_id_seq', 127, true);
+
+
+--
+-- TOC entry 5023 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: follows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.follows_id_seq', 102, true);
+
+
+--
+-- TOC entry 5024 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: likes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.likes_id_seq', 137, true);
+
+
+--
+-- TOC entry 5025 (class 0 OID 0)
+-- Dependencies: 225
+-- Name: posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.posts_id_seq', 117, true);
+
+
+--
+-- TOC entry 5026 (class 0 OID 0)
+-- Dependencies: 227
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 16, true);
+
+
+--
+-- TOC entry 4828 (class 2606 OID 90703)
+-- Name: active_storage_attachments active_storage_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.active_storage_attachments
+    ADD CONSTRAINT active_storage_attachments_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4825 (class 2606 OID 90693)
+-- Name: active_storage_blobs active_storage_blobs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.active_storage_blobs
+    ADD CONSTRAINT active_storage_blobs_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4832 (class 2606 OID 90719)
+-- Name: active_storage_variant_records active_storage_variant_records_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.active_storage_variant_records
+    ADD CONSTRAINT active_storage_variant_records_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4800 (class 2606 OID 90482)
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ar_internal_metadata
+    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- TOC entry 4802 (class 2606 OID 90492)
+-- Name: comments comments_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.comments
+    ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4806 (class 2606 OID 90501)
+-- Name: follows follows_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follows
+    ADD CONSTRAINT follows_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4814 (class 2606 OID 90511)
+-- Name: likes likes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.likes
+    ADD CONSTRAINT likes_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4817 (class 2606 OID 90525)
+-- Name: posts posts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.posts
+    ADD CONSTRAINT posts_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4798 (class 2606 OID 90475)
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- TOC entry 4823 (class 2606 OID 90537)
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4829 (class 1259 OID 90709)
+-- Name: index_active_storage_attachments_on_blob_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX index_active_storage_attachments_on_blob_id ON public.active_storage_attachments USING btree (blob_id);
+
+
+--
+-- TOC entry 4830 (class 1259 OID 90710)
+-- Name: index_active_storage_attachments_uniqueness; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX index_active_storage_attachments_uniqueness ON public.active_storage_attachments USING btree (record_type, record_id, name, blob_id);
+
+
+--
+-- TOC entry 4826 (class 1259 OID 90694)
+-- Name: index_active_storage_blobs_on_key; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX index_active_storage_blobs_on_key ON public.active_storage_blobs USING btree (key);
+
+
+--
+-- TOC entry 4833 (class 1259 OID 90725)
+-- Name: index_active_storage_variant_records_uniqueness; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX index_active_storage_variant_records_uniqueness ON public.active_storage_variant_records USING btree (blob_id, variation_digest);
+
+
+--
+-- TOC entry 4803 (class 1259 OID 90493)
+-- Name: index_comments_on_post_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX index_comments_on_post_id ON public.comments USING btree (post_id);
+
+
+--
+-- TOC entry 4804 (class 1259 OID 90494)
+-- Name: index_comments_on_user_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX index_comments_on_user_id ON public.comments USING btree (user_id);
+
+
+--
+-- TOC entry 4807 (class 1259 OID 90502)
+-- Name: index_follows_on_followed_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX index_follows_on_followed_id ON public.follows USING btree (followed_id);
+
+
+--
+-- TOC entry 4808 (class 1259 OID 90504)
+-- Name: index_follows_on_follower_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX index_follows_on_follower_id ON public.follows USING btree (follower_id);
+
+
+--
+-- TOC entry 4809 (class 1259 OID 90503)
+-- Name: index_follows_on_follower_id_and_followed_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX index_follows_on_follower_id_and_followed_id ON public.follows USING btree (follower_id, followed_id);
+
+
+--
+-- TOC entry 4810 (class 1259 OID 90512)
+-- Name: index_likes_on_post_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX index_likes_on_post_id ON public.likes USING btree (post_id);
+
+
+--
+-- TOC entry 4811 (class 1259 OID 90514)
+-- Name: index_likes_on_user_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX index_likes_on_user_id ON public.likes USING btree (user_id);
+
+
+--
+-- TOC entry 4812 (class 1259 OID 90513)
+-- Name: index_likes_on_user_id_and_post_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX index_likes_on_user_id_and_post_id ON public.likes USING btree (user_id, post_id);
+
+
+--
+-- TOC entry 4815 (class 1259 OID 90526)
+-- Name: index_posts_on_user_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX index_posts_on_user_id ON public.posts USING btree (user_id);
+
+
+--
+-- TOC entry 4818 (class 1259 OID 90538)
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX index_users_on_email ON public.users USING btree (email);
+
+
+--
+-- TOC entry 4819 (class 1259 OID 90539)
+-- Name: index_users_on_jti; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX index_users_on_jti ON public.users USING btree (jti);
+
+
+--
+-- TOC entry 4820 (class 1259 OID 90540)
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING btree (reset_password_token);
+
+
+--
+-- TOC entry 4821 (class 1259 OID 90541)
+-- Name: index_users_on_username; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX index_users_on_username ON public.users USING btree (username);
+
+
+--
+-- TOC entry 4834 (class 2606 OID 90547)
+-- Name: comments fk_rails_03de2dc08c; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.comments
+    ADD CONSTRAINT fk_rails_03de2dc08c FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- TOC entry 4838 (class 2606 OID 90567)
+-- Name: likes fk_rails_1e09b5dabf; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.likes
+    ADD CONSTRAINT fk_rails_1e09b5dabf FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- TOC entry 4835 (class 2606 OID 90542)
+-- Name: comments fk_rails_2fd19c0db7; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.comments
+    ADD CONSTRAINT fk_rails_2fd19c0db7 FOREIGN KEY (post_id) REFERENCES public.posts(id);
+
+
+--
+-- TOC entry 4840 (class 2606 OID 90572)
+-- Name: posts fk_rails_5b5ddfd518; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.posts
+    ADD CONSTRAINT fk_rails_5b5ddfd518 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- TOC entry 4836 (class 2606 OID 90552)
+-- Name: follows fk_rails_5ef72a3867; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follows
+    ADD CONSTRAINT fk_rails_5ef72a3867 FOREIGN KEY (followed_id) REFERENCES public.users(id);
+
+
+--
+-- TOC entry 4837 (class 2606 OID 90557)
+-- Name: follows fk_rails_622d34a301; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follows
+    ADD CONSTRAINT fk_rails_622d34a301 FOREIGN KEY (follower_id) REFERENCES public.users(id);
+
+
+--
+-- TOC entry 4839 (class 2606 OID 90562)
+-- Name: likes fk_rails_87a8aac469; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.likes
+    ADD CONSTRAINT fk_rails_87a8aac469 FOREIGN KEY (post_id) REFERENCES public.posts(id);
+
+
+--
+-- TOC entry 4842 (class 2606 OID 90720)
+-- Name: active_storage_variant_records fk_rails_993965df05; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.active_storage_variant_records
+    ADD CONSTRAINT fk_rails_993965df05 FOREIGN KEY (blob_id) REFERENCES public.active_storage_blobs(id);
+
+
+--
+-- TOC entry 4841 (class 2606 OID 90704)
+-- Name: active_storage_attachments fk_rails_c3b3935057; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.active_storage_attachments
+    ADD CONSTRAINT fk_rails_c3b3935057 FOREIGN KEY (blob_id) REFERENCES public.active_storage_blobs(id);
+
+
+-- Completed on 2025-04-25 23:09:40
+
+--
+-- PostgreSQL database dump complete
+--
+
